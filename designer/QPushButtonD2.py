@@ -11,6 +11,14 @@ class myTestWidget(QWidget):
 #        self.label = loadUi('QLabel.ui')
         widget = QWidget()
 
+        vbox = QVBoxLayout()
+        upper = QFrame()
+        upper.setFrameShape(QFrame.StyledPanel)
+        bottom = QFrame()
+        bottom.setFrameShape(QFrame.StyledPanel)
+
+        splitter = QSplitter(Qt.Vertical)
+
         self.v = QVBoxLayout()
 
         for _ in range(0, 15):
@@ -22,12 +30,25 @@ class myTestWidget(QWidget):
             h.addWidget(label)
             h.addStretch()
 
-            self.v.addLayout(h)
+#            self.v.addLayout(h)
+            vbox.addLayout(h)
 
+        vbox2 = QVBoxLayout()
         bottomBtn = QPushButton("Next")
         bottomBtn.clicked.connect(self.refreshMe)
+        vbox2.addWidget(bottomBtn)
 
-        self.v.addWidget(bottomBtn)
+        upper.setLayout(vbox)
+        bottom.setLayout(vbox2)
+
+        splitter.addWidget(upper)
+        splitter.addWidget(bottom)
+
+        self.v.addWidget(splitter)
+
+
+#        self.v.addWidget(bottomBtn)
+
         widget.setLayout(self.v)
 
 

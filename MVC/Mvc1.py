@@ -7,10 +7,30 @@ class Model(QAbstractItemModel):
     def __init__(self, parent=None):
         super(Model,self).__init__(parent)
         self.items = [
-            ['たぬき','そば','温'],
-            ['きつね', 'うどん', '温'],
-            ['月見', 'そば', 'ひや'],
-            ['天ぷら', 'うどん', 'ひや']
+            ['Apple','Juice','Good'],
+            ['Orange', 'Juice', 'OK'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Lemmon', 'Slice', 'Bad'],
+            ['Meron', 'Slice', 'Sweet']
         ]
 
     def index(self, row, column, parent=QModelIndex()):
@@ -43,7 +63,12 @@ class MainWindow(QMainWindow):
         view = QTableView(self)
         model = Model(self)
         view.setModel(model)
+
+#        v = QVBoxLayout(view)
+#        v.addWidget(view)
         self.setCentralWidget(view)
+ #       self.setLayout(v)
+
 
 def main():
     app = QApplication(sys.argv)

@@ -13,9 +13,9 @@ class myAccordionItem(QWidget):
 
         self.textArea = QTextBrowser()
 #        self.textArea.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        self.textArea.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        self.textArea.setMinimumHeight(10)
-
+#        self.textArea.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+#        self.textArea.setMaximumHeight(50)
+#        self.textArea.setMinimumHeight(20)
         pushButton.clicked.connect(lambda checked: self.buttonClicked(checked, self.textArea))
 
         h = QHBoxLayout()
@@ -35,12 +35,19 @@ class myAccordionItem(QWidget):
             print("checked")
             textArea.hide()
             self.update()
-            self.parent().sizeHint()
+#            self.layout().activate()
+            self.parent().resize(self.sizeHint())
+
         else:
             print("notChecked")
             textArea.show()
-            self.update()
-            self.parent().sizeHint()
+            #self.update()
+           # self.parent().sizeHint()
+            self.parent().resize(self.sizeHint())
+
+#    def resizeEvent(self, newSize):
+#        print("Resize me")
+#        pass
 
 
 class myAccordionSample(QWidget):
@@ -48,15 +55,22 @@ class myAccordionSample(QWidget):
         super().__init__()
 
         v = QVBoxLayout()
-
-        for _ in range(3):
+        
+        for _ in range(5):
             ui = myAccordionItem()
             v.addWidget(ui)
 
 #        self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
         self.setLayout(v)
+        self.setGeometry(50, 50, 600, 400)
         self.show()
+
+    def resizeEvent(self, newSize):
+        print("Full resize!")
+#        self.layout().activate()
+        self.resize(self.sizeHint())
+        pass
 
 
 if __name__ == "__main__":
