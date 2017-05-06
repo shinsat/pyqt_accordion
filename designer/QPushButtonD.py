@@ -13,7 +13,7 @@ class myTestWidget(QWidget):
 
         self.v = QVBoxLayout()
 
-        for _ in range(0, 20):
+        for _ in range(0, 5):
             h = QHBoxLayout()
             btn = QPushButton("BTN")
             label = QLabel("HOHOHOHO")
@@ -23,6 +23,11 @@ class myTestWidget(QWidget):
             h.addStretch()
 
             self.v.addLayout(h)
+
+        bottomBtn = QPushButton("Next")
+        bottomBtn.clicked.connect(self.refreshMe)
+
+        self.v.addWidget(bottomBtn)
         widget.setLayout(self.v)
 
 
@@ -37,12 +42,16 @@ class myTestWidget(QWidget):
 #        scroll.setWidget()
 #        self.v.addWidget(scroll)
 
-        vLayout = QVBoxLayout()
-        vLayout.addWidget(scroll)
-        self.setLayout(vLayout)
+        self.vLayout = QVBoxLayout()
+        self.vLayout.addWidget(scroll)
+        self.setLayout(self.vLayout)
 #        self.setLayout(self.v)
         self.show()
 
+    def refreshMe(self):
+        print("kk")
+
+        self.vLayout.update()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
